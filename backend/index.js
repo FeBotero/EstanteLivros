@@ -26,6 +26,7 @@ async function main() {
   });
   // ==============CRUD LIVROS==============
 
+  //   ----------------------CREATE------------------
   app.post("/livros", async function (req, res) {
     const book = req.body;
 
@@ -42,12 +43,28 @@ async function main() {
     }
   });
 
+  //   ----------------------READ------------------
   app.get("/livros", async function (req, res) {
     const books = await livrosCollection.find().toArray();
 
     res.send(books);
   });
+  //   ----------------------READ BY ID------------------
+  app.get("/livros/:id", async function (req, res) {
+    const id = req.params.id;
+    const books = await livrosCollection.findOne({
+      _id: ObjectId(id),
+    });
+    if (!books) {
+      res.status(400).send({
+        message: "Livro não encontrado",
+      });
+    } else {
+      res.send(books);
+    }
+  });
 
+  //   ----------------------UPDATE------------------
   app.put("/livros/:id", async function (req, res) {
     const id = req.params.id;
 
@@ -57,7 +74,7 @@ async function main() {
 
     res.send({ mensagem: "Livro atualizado com sucesso!" });
   });
-
+  //   ----------------------DELETE------------------
   app.delete("/livros/:id", async function (req, res) {
     const id = req.params.id;
 
