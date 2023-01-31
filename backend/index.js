@@ -1,5 +1,5 @@
 const express = require("express");
-const { MongoClient } = require("mongodb");
+const { MongoClient, ObjectId } = require("mongodb");
 const cors = require("cors");
 require("dotenv").config();
 const app = express();
@@ -46,6 +46,14 @@ async function main() {
     const books = await livrosCollection.find().toArray();
 
     res.send(books);
+  });
+
+  app.put("/livros/:id", async function (req, res) {
+    const id = req.params.id;
+
+    const book = req.body;
+
+    await livrosCollection.updateOne({ _id: ObjectId(id) }, { $set: book });
   });
 
   app.listen(3000, () => {
