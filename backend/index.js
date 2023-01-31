@@ -25,6 +25,7 @@ async function main() {
     res.send("Hello World");
   });
   // ==============CRUD LIVROS==============
+
   app.post("/livros", async function (req, res) {
     const book = req.body;
 
@@ -39,6 +40,12 @@ async function main() {
         message: "Livro cadastrado com sucesso",
       });
     }
+  });
+
+  app.get("/livros", async function (req, res) {
+    const books = await livrosCollection.find().toArray();
+
+    res.send(books);
   });
 
   app.listen(3000, () => {
