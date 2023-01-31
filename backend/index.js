@@ -54,6 +54,17 @@ async function main() {
     const book = req.body;
 
     await livrosCollection.updateOne({ _id: ObjectId(id) }, { $set: book });
+
+    res.send({ mensagem: "Livro atualizado com sucesso!" });
+  });
+
+  app.delete("/livros/:id", async function (req, res) {
+    const id = req.params.id;
+
+    await livrosCollection.deleteOne({ _id: new ObjectId(id) });
+    res.send({
+      message: "Livro excluído com sucesso",
+    });
   });
 
   app.listen(3000, () => {
