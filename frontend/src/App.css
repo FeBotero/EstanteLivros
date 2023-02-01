@@ -7,6 +7,8 @@
 }
 .content{
     display: flex;
+    flex-wrap: wrap;
+
     
 }
 .content button{
@@ -19,6 +21,9 @@
     margin-top: 1rem;
     padding: 1rem;
     gap: 1rem;
+}
+.modalCreate>input{
+    height: 1.5rem;
 }
 .coverImage>img{
     width: 10rem;
@@ -36,12 +41,28 @@
     padding: 1rem;
     gap: 1rem;
 }
+.modalExibition>input{
+    height: 1.5rem;
+}
 .closeModal{
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
-    justify-items: end;
+    
     border: none;
     background: transparent;
 
+}
+.ModalClose{
+    display: flex;
+    justify-content: end;
+    gap:1rem;
+
+    
+}
+.ModalClose>button{
+    display: flex;
+    align-items: center;
+    align-content: center;
+    gap:0.5rem;
+    padding: .5rem;
+    border: none;
+    border-radius: 0.5rem;
 }
