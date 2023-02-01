@@ -1,10 +1,11 @@
 import "./books.css"
 
-export function Book({coverImage,id}){
+export function Book({coverImage,id,refreshBooks}){
+    // refreshBooks()
     return(
         <div className="containerBooks">
             <div className="books">
-                <img src="https://m.media-amazon.com/images/I/81HKcvLn15L.jpg" alt="" />
+                <img src={coverImage} alt=""id={id} />
             </div>
             
         </div>

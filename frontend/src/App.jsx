@@ -1,15 +1,23 @@
 import "./App.css"
+
+import {Api} from "./API/api"
 import {Book} from "./components/Book"
+
+
 import Modal from "react-modal"
-import { useState } from "react"
+import { useState,useEffect } from "react"
 import { Books, XSquare,Trash,Pencil,FloppyDisk} from "phosphor-react";
+import { ReadBooks } from "./components/ReadBooks";
 
 Modal.setAppElement("#root")
 
 export function App() {
+  const [bookList,setBooksList]=useState()
+  const [bookCase,setBookCase]=useState()
+ 
   const [modalIsOpen,setIsOpen]=useState(false)
   const [modalIsOpen2,setIsOpen2]=useState(false)
-  const [edit,setEdit]=useState(false)
+  
 
   function handleOpenModal(){
     setIsOpen(true)
@@ -38,12 +46,36 @@ export function App() {
       transform: 'translate(-50%, -50%)',
     },
   };
+  async function showBooks(){
+    const response = await Api.books.readAll()
+
+    const resultado = await response.json()
+
+  setBooksList(resultado)
+  console.log(resultado)
+ }
+
+  useEffect(function () {
+    showBooks();
+  }, []);
+  
+  if (bookList === undefined) {
+    return (
+        <div>
+        <h1>Carregando</h1>
+        </div>
+);
+}
+
+  
 
   return (
     <div className="App">
       <div className="container">
         <h1>Estante de Livros</h1>
         <button onClick={handleOpenModal}>Adicionar Livro <Books size={32} /> </button>
+
+        {/* Modal de novos livros */}
         <Modal
         isOpen={modalIsOpen}
         onRequestClose={handleCloseModal}
@@ -52,13 +84,22 @@ export function App() {
           <div className="ModalClose">
         <button className="closeModal" onClick={handleCloseModal}><XSquare size={32} color="red"weight="fill"/></button>  
         </div>
-        <form className="modalCreate">
-        <input type="text" placeholder="Nome do Livro" />
-        <input type="text" placeholder="Nome do Autor" />
-        <input type="number" name="" id="" placeholder="Paginas"/>
-        <input type="checkbox" name="" id="" />
-        <input type="text" placeholder="Endereço da Capa"/>
-        <textarea name="" id="" cols="30" rows="10" placeholder="Resumo" />
+        <form  className="modalCreate">
+        <label htmlFor="bookName">Nome do livro</label>
+        <input id="bookName"type="text" placeholder="Nome do Livro" />
+        <label htmlFor="bookAuthor">Nome do autor</label>
+        <input  id="bookAuthor"type="text" placeholder="Nome do Autor" />
+        <label htmlFor="bookPages">Número de paginas</label>
+        <input id="bookPages"type="number" name=""  placeholder="Paginas"/>
+        <label htmlFor="bookRead">Já foi lido?</label>
+        <select name="bookRead" id="bookRead">
+          <option value="true">Sim</option>
+          <option value="false">Não</option>
+        </select>
+        <label htmlFor="bookCover">Endereço de capa</label>
+        <input id="bookCover"type="text" placeholder="Endereço da Capa"/>
+        <label htmlFor="bookSummary">Resumo</label>
+        <textarea name="" id="bookSummary" cols="30" rows="10" placeholder="Resumo" />
         <div className="ModalClose">
 
         <button>Salvar <FloppyDisk size={32} /></button>
@@ -66,7 +107,7 @@ export function App() {
         </form>
         </Modal>
 
-
+      {/* Modal de exibição */}
         <Modal
         isOpen={modalIsOpen2}
         onRequestClose={handleCloseModal2}
@@ -101,15 +142,16 @@ export function App() {
         
         </Modal>
       <div className="content">
-       <button onClick={handleOpenModal2}><Book /></button>
-       <button onClick={handleOpenModal2}><Book /></button>
-       <button onClick={handleOpenModal2}><Book /></button>
-       <button onClick={handleOpenModal2}><Book /></button>
-       <button onClick={handleOpenModal2}><Book /></button>
-       <button onClick={handleOpenModal2}><Book /></button>
-       <button onClick={handleOpenModal2}><Book /></button>
-       <button onClick={handleOpenModal2}><Book /></button>
-       <button onClick={handleOpenModal2}><Book /></button>
+      
+      
+          {bookList.map((book)=>(
+            <Book 
+            coverImage={book.coverImage} 
+            id={book._id}
+            key={book.name}
+            />
+          ))}
+        
       </div>
        
         
