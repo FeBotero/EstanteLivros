@@ -67,7 +67,39 @@ export function App() {
 );
 }
 
-  
+  async function createBook(event){
+    event.preventDefault()
+    
+    const payload = {
+      name:document.getElementById("bookName").value,
+      author:document.getElementById("bookAuthor").value,
+      pages:document.getElementById("bookPages").value,
+      coverImage:document.getElementById("bookCover").value,
+      read:document.getElementById("bookRead").value,
+      summary:document.getElementById("bookSummary").value,
+    }
+
+    await Api.books.createUrl(payload)
+
+    const request = await Api.books.createUrl(payload)
+    const data = await request.json()
+
+    if(request.status==200){
+      alert(data.message)
+    }else{
+      alert(data.message)
+    }
+
+    showBooks()
+
+    document.getElementById("bookName").value="",
+      document.getElementById("bookAuthor").value="",
+      document.getElementById("bookPages").value="",
+      document.getElementById("bookCover").value="",
+      document.getElementById("bookRead").value="",
+      document.getElementById("bookSummary").value=""
+
+  }
 
   return (
     <div className="App">
@@ -84,7 +116,7 @@ export function App() {
           <div className="ModalClose">
         <button className="closeModal" onClick={handleCloseModal}><XSquare size={32} color="red"weight="fill"/></button>  
         </div>
-        <form  className="modalCreate">
+        <form onSubmit={createBook} className="modalCreate">
         <label htmlFor="bookName">Nome do livro</label>
         <input id="bookName"type="text" placeholder="Nome do Livro" />
         <label htmlFor="bookAuthor">Nome do autor</label>
@@ -102,7 +134,7 @@ export function App() {
         <textarea name="" id="bookSummary" cols="30" rows="10" placeholder="Resumo" />
         <div className="ModalClose">
 
-        <button>Salvar <FloppyDisk size={32} /></button>
+        <button type="submit">Salvar <FloppyDisk size={32} /></button>
         </div>
         </form>
         </Modal>
@@ -148,7 +180,7 @@ export function App() {
             <Book 
             coverImage={book.coverImage} 
             id={book._id}
-            key={book.name}
+            key={book._id}
             />
           ))}
         
