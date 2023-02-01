@@ -1,0 +1,15 @@
+.containerBooks{
+    display: flex;
+}
+
+.books>img{
+    width: 10rem;
+    margin-right: 1rem;
+    transition: all 0.7s;
+}
+.books>img:hover{
+    width: 15rem;
+    
+    opacity: 0.4;
+    transition: all 0.7s;
+}

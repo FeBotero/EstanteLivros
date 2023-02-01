@@ -1,0 +1,47 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap:1rem
+}
+.content{
+    display: flex;
+    
+}
+.content button{
+    border: none;
+    background: transparent;
+}
+.modalCreate{
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+    padding: 1rem;
+    gap: 1rem;
+}
+.coverImage>img{
+    width: 10rem;
+}
+.infoBook{
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-start;
+}
+.modalExibition{
+    display: flex;
+    flex-direction: column;
+    width: 30rem;
+    margin-top: 1rem;
+    padding: 1rem;
+    gap: 1rem;
+}
+.closeModal{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    justify-items: end;
+    border: none;
+    background: transparent;
+
+}
