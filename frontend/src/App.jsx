@@ -79,8 +79,6 @@ export function App() {
       summary:document.getElementById("bookSummary").value,
     }
 
-    await Api.books.createUrl(payload)
-
     const request = await Api.books.createUrl(payload)
     const data = await request.json()
 
@@ -100,6 +98,7 @@ export function App() {
       document.getElementById("bookSummary").value=""
 
   }
+  
 
   return (
     <div className="App">
@@ -140,7 +139,7 @@ export function App() {
         </Modal>
 
       {/* Modal de exibição */}
-        <Modal
+        {/* <Modal
         isOpen={modalIsOpen2}
         onRequestClose={handleCloseModal2}
         style={customStyles}
@@ -166,21 +165,29 @@ export function App() {
         <p>O homem mais rico da Babilônia é um clássico sobre como multiplicar riqueza e solucionar problemas financeiros. Baseando-se nos segredos de sucesso dos antigos babilônicos — os habitantes da cidade mais rica e próspera de seu tempo.George S. Clason mostra soluções ao mesmo tempo sábias e muito atuais para evitar a falta de dinheiro. como não desperdiçar recursos durante tempos de opulência. buscar conhecimento e informação em vez de apenas lucro. assegurar uma renda para o futuro. manter a pontualidade no pagamento de dívidas e. sobretudo. cultivar as próprias aptidões. tornando-se cada vez mais habilidoso e consciente.</p>
         <div className="ModalClose">
         <button>Editar <Pencil size={32} /></button>
-        <button>Excluir <Trash size={32} /></button>
+        <button >Excluir <Trash size={32} /></button>
         </div>
         </div>       
         </form>
  
         
-        </Modal>
+        </Modal> */}
       <div className="content">
       
       
           {bookList.map((book)=>(
+            
             <Book 
             coverImage={book.coverImage} 
             id={book._id}
-            key={book._id}
+            key={book.name}
+            name={book.name}
+            author={book.author}
+            pages={book.pages}
+            read={book.read}
+            summary={book.summary}
+            refreshBooks={showBooks}
+            
             />
           ))}
         
