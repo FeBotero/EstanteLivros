@@ -6,7 +6,7 @@ import { Routes, Route } from "react-router-dom";
 
 import "./App.css"
 
-import { Home } from "./pages/Home";
+import {Home}from "./pages/Home"
 import {Admin} from "./pages/Admin"
 
 Modal.setAppElement("#root")

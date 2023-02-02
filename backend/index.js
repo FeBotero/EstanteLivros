@@ -72,7 +72,7 @@ async function main() {
 
     await livrosCollection.updateOne({ _id: ObjectId(id) }, { $set: book });
 
-    res.send({ mensagem: "Livro atualizado com sucesso!" });
+    res.send({ message: "Livro atualizado com sucesso!" });
   });
   //   ----------------------DELETE------------------
   app.delete("/livros/:id", async function (req, res) {

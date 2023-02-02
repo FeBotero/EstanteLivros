@@ -35,9 +35,7 @@ export function BookView({coverImage,id,author,pages,read,summary,name}){
           transform: 'translate(-50%, -50%)',
         },
       };
-
-
-
+      
     return(
         <div>
             <Modal
@@ -58,6 +56,7 @@ export function BookView({coverImage,id,author,pages,read,summary,name}){
           <h3>{name}</h3>
         <h5>{author}</h5>
         <p>{pages} paginas</p>
+        {read==="true" ? <p>Disponivel</p> : <p>Indísponivel</p> }
         
           </div>
           </div>

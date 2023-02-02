@@ -6,9 +6,10 @@
 [x] Estilizar modal
 [x] Ligar modal de adicionar com API
 [x] Ligar modal de Exibir com API
-[ ] Criar aba de Adicionado Recente
 [x] Ligar exibição dos livros com API
-[ ] Criar uma rota de edição dos livros
+[x] Criar uma rota de edição dos livros
+[ ] Criar função de atualizar livros
+[ ] Criar aba de Adicionado Recente
 
 aparecer somente a capa, quando colocar o mouse em cima aparecer com nome
 Criar logo igual netflix
