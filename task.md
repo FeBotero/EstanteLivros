@@ -4,10 +4,11 @@
 [X] Estilizar modal
 [x] Criar o modal de EXIBIR E EXCLUIR LIVRO
 [x] Estilizar modal
-[ ] Ligar modal de adicionar com API
-[ ] Ligar modal de Exibir e editar com API
+[x] Ligar modal de adicionar com API
+[x] Ligar modal de Exibir com API
 [ ] Criar aba de Adicionado Recente
-[ ] Ligar exibição dos livros com API
+[x] Ligar exibição dos livros com API
+[ ] Criar uma rota de edição dos livros
 
 aparecer somente a capa, quando colocar o mouse em cima aparecer com nome
 Criar logo igual netflix
