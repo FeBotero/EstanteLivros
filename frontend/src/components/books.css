@@ -13,3 +13,8 @@
     opacity: 0.4;
     transition: all 0.7s;
 }
+.avaible{
+    display: flex;
+    align-items: center;
+    gap:1rem
+}

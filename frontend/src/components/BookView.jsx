@@ -1,7 +1,7 @@
 import "./books.css"
 import Modal from "react-modal"
 import { useState } from "react"
-import {  XSquare,Trash,Pencil,FloppyDisk} from "phosphor-react";
+import {  XSquare,CheckCircle,XCircle} from "phosphor-react";
 import { Api } from "../API/api";
 
 export function BookView({coverImage,id,author,pages,read,summary,name}){
@@ -56,7 +56,7 @@ export function BookView({coverImage,id,author,pages,read,summary,name}){
           <h3>{name}</h3>
         <h5>{author}</h5>
         <p>{pages} paginas</p>
-        {read==="true" ? <p>Disponivel</p> : <p>Indísponivel</p> }
+        {read==="true" ? <p className="avaible">DISPONÍVEL <CheckCircle size={32} color="green"weight="fill"/></p> : <p className="avaible">INDISPONÍVEL <XCircle size={32} color="red"weight="fill"/></p> }
         
           </div>
           </div>

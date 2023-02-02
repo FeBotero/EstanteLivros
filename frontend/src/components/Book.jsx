@@ -1,7 +1,7 @@
 import "./books.css"
 import Modal from "react-modal"
 import { useState,useEffect } from "react"
-import {  XSquare,Trash,Pencil,FloppyDisk} from "phosphor-react";
+import {  XSquare,Trash,Pencil,FloppyDisk,CheckCircle,XCircle} from "phosphor-react";
 import { Api } from "../API/api";
 
 export function Book({coverImage,id,refreshBooks,author,pages,read,summary,name}){
@@ -143,7 +143,7 @@ export function Book({coverImage,id,refreshBooks,author,pages,read,summary,name}
           <h3>{name}</h3>
         <h5>{author}</h5>
         <p>{pages} paginas</p>
-        {read==="true" ? <p>Disponivel</p> : <p>Indísponivel</p> }
+        {read==="true" ? <CheckCircle size={32} color="green"weight="fill"/> : <XCircle size={32} color="red"weight="fill"/> }
         
           </div>
           </div>
