@@ -1,7 +1,7 @@
 import "./books.css"
 import Modal from "react-modal"
-import { useState,useEffect } from "react"
-import { Books, XSquare,Trash,Pencil,FloppyDisk} from "phosphor-react";
+import { useState } from "react"
+import {  XSquare,Trash,Pencil} from "phosphor-react";
 import { Api } from "../API/api";
 
 export function Book({coverImage,id,refreshBooks,author,pages,read,summary,name}){
@@ -12,7 +12,8 @@ export function Book({coverImage,id,refreshBooks,author,pages,read,summary,name}
         setIsOpen2(true)
       }
       async function deleteBook(event){
-        const response = Api.books.deleteUrl()
+        
+        const response = await Api.books.deleteUrl(id)
         const data = await response.json()
 
         if(request.status==200){
@@ -20,7 +21,7 @@ export function Book({coverImage,id,refreshBooks,author,pages,read,summary,name}
         }else{
           alert(data.message)
         }
-        
+        refreshBooks()
       }
     
       function handleCloseModal2(){
@@ -67,7 +68,7 @@ export function Book({coverImage,id,refreshBooks,author,pages,read,summary,name}
         <p>{summary}</p>
         <div className="ModalClose">
         <button>Editar <Pencil size={32} /></button>
-        <button >Excluir <Trash size={32} /></button>
+        <button onClick={deleteBook} >Excluir <Trash size={32} /></button>
         </div>
         </div>       
         </form>

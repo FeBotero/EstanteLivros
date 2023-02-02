@@ -43,13 +43,13 @@ export const Api = {
       return getRequest(this.endpoint());
     },
     readByID: function (id) {
-      return getRequest(this.endpoint + "/" + id);
+      return getRequest(this.endpoint() + "/" + id);
     },
     updateUrl: function (id, body) {
-      return putRequest(this.endpoint + "/" + id, body);
+      return putRequest(this.endpoint() + "/" + id, body);
     },
     deleteUrl: function (id) {
-      return deleteRequest(this.endpoint + "/" + id);
+      return deleteRequest(this.endpoint() + "/" + id);
     },
   },
 };
