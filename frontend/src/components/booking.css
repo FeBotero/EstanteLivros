@@ -1,0 +1,14 @@
+.cardBooking{
+    display: flex;
+    
+    background: rgb(236, 221, 193);
+    padding: 1rem;
+    border-radius: 0.5rem;
+}
+.ModalClose{
+    display: flex;
+    justify-content: end;
+    gap:1rem;
+
+    
+}

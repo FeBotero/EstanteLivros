@@ -30,11 +30,31 @@ const putRequest = function (url, body) {
 };
 
 export const Api = {
-  baseUrl: "http://localhost:3000/livros",
+  baseUrl: "http://localhost:3000/",
 
   books: {
     endpoint: function () {
-      return Api.baseUrl;
+      return Api.baseUrl + "livros";
+    },
+    createUrl: function (body) {
+      return createRequest(this.endpoint(), body);
+    },
+    readAll: function () {
+      return getRequest(this.endpoint());
+    },
+    readByID: function (id) {
+      return getRequest(this.endpoint() + "/" + id);
+    },
+    updateUrl: function (id, body) {
+      return putRequest(this.endpoint() + "/" + id, body);
+    },
+    deleteUrl: function (id) {
+      return deleteRequest(this.endpoint() + "/" + id);
+    },
+  },
+  bookings: {
+    endpoint: function () {
+      return Api.baseUrl + "reservas";
     },
     createUrl: function (body) {
       return createRequest(this.endpoint(), body);

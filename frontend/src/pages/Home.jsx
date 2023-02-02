@@ -1,4 +1,5 @@
 import "../App.css"
+import Logo from "../assets/log.png"
 
 import {Api} from "../API/api"
 import { BookView } from "../components/BookView"
@@ -66,7 +67,7 @@ export function Home(){
   return (
     <div className="App">
       <div className="container">
-        <h1>Estante de Livros</h1>
+        <img className="logoImage"src={Logo} alt="" />
       
       
       <div className="content">

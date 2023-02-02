@@ -15,6 +15,7 @@ async function main() {
   console.log("Conectado com sucesso no banco de dados.");
   const db = client.db(dbName);
   const livrosCollection = db.collection("Livros");
+  const reservaCollection = db.collection("reserva");
 
   const app = express();
 
@@ -24,7 +25,7 @@ async function main() {
   app.get("/", function (req, res) {
     res.send("Hello World");
   });
-  // ==============CRUD LIVROS==============
+  // ==============CRUD ==============
 
   //   ----------------------CREATE------------------
   app.post("/livros", async function (req, res) {
@@ -81,6 +82,64 @@ async function main() {
     await livrosCollection.deleteOne({ _id: new ObjectId(id) });
     res.send({
       message: "Livro excluído com sucesso",
+    });
+  });
+
+  //   ----------------------CREATE------------------
+  app.post("/reservas", async function (req, res) {
+    const booking = req.body;
+
+    await reservaCollection.insertOne(booking);
+
+    if (!booking || !booking.bookingName) {
+      res.status(400).send({
+        message: "Reserva não cadastrada",
+      });
+    } else {
+      res.send({
+        message: "Reserva cadastrada com sucesso",
+      });
+    }
+  });
+
+  //   ----------------------READ------------------
+  app.get("/reservas", async function (req, res) {
+    const bookings = await reservaCollection.find().toArray();
+
+    res.send(bookings);
+  });
+  //   ----------------------READ BY ID------------------
+  app.get("/reservas/:id", async function (req, res) {
+    const id = req.params.id;
+    const bookings = await reservaCollection.findOne({
+      _id: ObjectId(id),
+    });
+    if (!bookings) {
+      res.status(400).send({
+        message: "Reserva não encontrada",
+      });
+    } else {
+      res.send(bookings);
+    }
+  });
+
+  //   ----------------------UPDATE------------------
+  app.put("/reservas/:id", async function (req, res) {
+    const id = req.params.id;
+
+    const booking = req.body;
+
+    await reservaCollection.updateOne({ _id: ObjectId(id) }, { $set: booking });
+
+    res.send({ message: "Reserva atualizada com sucesso!" });
+  });
+  //   ----------------------DELETE------------------
+  app.delete("/reservas/:id", async function (req, res) {
+    const id = req.params.id;
+
+    await reservaCollection.deleteOne({ _id: new ObjectId(id) });
+    res.send({
+      message: "Reserva excluída com sucesso",
     });
   });
 

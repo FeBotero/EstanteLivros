@@ -2,16 +2,19 @@ import "../App.css"
 
 import {Api} from "../API/api"
 import {Book} from "../components/Book"
+import Logo from "../assets/log.png"
 
 
 import Modal from "react-modal"
 import { useState,useEffect } from "react"
-import { Books, XSquare,Trash,Pencil,FloppyDisk} from "phosphor-react";
+import { Books, XSquare,FloppyDisk} from "phosphor-react";
+import { Booking } from "../components/Booking"
 
 
 
 export function Admin(){
     const [bookList,setBooksList]=useState()
+    const [bookingList,setBookingsList]=useState()
   
  
   const [modalIsOpen,setIsOpen]=useState(false)
@@ -47,17 +50,25 @@ export function Admin(){
   setBooksList(resultado)
   console.log(resultado)
  }
+ async function showBookings(){
+  const response = await Api.bookings.readAll()
+
+  const resultado = await response.json()
+
+setBookingsList(resultado)
+console.log(resultado)
+}
 
   useEffect(function () {
     showBooks();
+    showBookings()
   }, []);
-  
-  if (bookList === undefined) {
+  if (bookingList === undefined||bookList === undefined) {
     return (
         <div>
         <h1>Carregando</h1>
         </div>
-);
+  )
 }
 
   async function createBook(event){
@@ -96,7 +107,7 @@ export function Admin(){
   return (
     <div className="App">
       <div className="container">
-        <h1>Estante de Livros</h1>
+      <img className="logoImage"src={Logo} alt="" />
         <button onClick={handleOpenModal}>Adicionar Livro <Books size={32} /> </button>
 
         {/* Modal de novos livros */}
@@ -150,8 +161,25 @@ export function Admin(){
             
             />
           ))}
-        
+        <div className="bookings">
+        <h3>Reservas</h3>
+        {bookingList.map((booking)=>(
+            
+            <Booking 
+            name={booking.bookingName} 
+            key={booking._id}
+            title={booking.name}
+            number={booking.telNumber}
+            date={booking.bookingDate}
+            refreshbookings={showBookings}
+            
+            />
+          ))}
+
+
       </div>
+      </div>
+      
        
         
       </div>
