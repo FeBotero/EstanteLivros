@@ -13,8 +13,7 @@ export function Book({coverImage,id,refreshBooks,author,pages,read,summary,name}
 
         setIsOpenExibir(false)
         setIsOpenCadastrar(true)
-      }
-    
+      }   
       function handleCloseModalCadastrar(){
         setIsOpenCadastrar(false)
       }
@@ -26,10 +25,8 @@ export function Book({coverImage,id,refreshBooks,author,pages,read,summary,name}
       }
 
       async function deleteBook(){
-        
         const response = await Api.books.deleteUrl(id)
         const data = await response.json()
-
         if(request.status==200){
           alert(data.message)
             }else{
@@ -69,8 +66,6 @@ export function Book({coverImage,id,refreshBooks,author,pages,read,summary,name}
         read:document.getElementById("bookRead").value,
         summary:document.getElementById("bookSummary").value,
       }
-
-      
     const request = await Api.books.updateUrl(id,payload)
     console.log(request)
     const data = await request.json()

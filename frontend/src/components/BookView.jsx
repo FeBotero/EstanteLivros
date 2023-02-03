@@ -1,8 +1,13 @@
-import "./books.css"
+
 import Modal from "react-modal"
 import { useState } from "react"
 import {  XSquare,ArchiveBox,PaperPlaneTilt,CheckCircle,XCircle} from "phosphor-react";
 import {Api} from "../API/api"
+import { ToastContainer, toast } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.min.css';
+import "./books.css"
+
 
 
 export function BookView({coverImage,id,author,pages,read,summary,name}){
@@ -45,31 +50,53 @@ export function BookView({coverImage,id,author,pages,read,summary,name}){
           event.preventDefault()
           const now = Date.now();
           const dateNow = Date(now);
-          
-          const payload = {
-            name:document.getElementById("bookName").value,
-            bookingName:document.getElementById("bookingName").value,
-            telNumber:document.getElementById("telNumber").value,
-            bookingDate:dateNow,
-            bookingStatus:"pending"
+          if(document.getElementById("bookingName").value==""||document.getElementById("bookName").value==undefined){
             
-          }
-          
-          const request = await Api.bookings.createUrl(payload)
-          const data = await request.json()
-
-          if(request.status==200){
-            alert(data.message)
+            toast.error('Favor preencher seu nome !', {
+              position: toast.POSITION.TOP_CENTER
+          });
           }else{
-            alert(data.message)
+            if(document.getElementById("telNumber").value==""||document.getElementById("telNumber").value==undefined||(document.getElementById("telNumber").value).length<9){
+              
+              toast.error('Favor preencher seu número!', {
+                position: toast.POSITION.TOP_CENTER
+            });
+            }else{
+              const payload = {
+                name:document.getElementById("bookName").value,
+                bookingName:document.getElementById("bookingName").value,
+                telNumber:document.getElementById("telNumber").value,
+                bookingDate:dateNow,
+                bookingStatus:"pending"
+                
+              }
+              
+              const request = await Api.bookings.createUrl(payload)
+              const data = await request.json()
+    
+              if(request.status==200){
+                  
+                toast.success(data.message, {
+                  position: toast.POSITION.TOP_RIGHT
+              });
+              }else{
+                
+                toast.error(data.message, {
+                  position: toast.POSITION.TOP_CENTER
+              })
+              }
+              
+              document.getElementById("bookName").value="",
+              document.getElementById("bookingName").value="",
+              document.getElementById("telNumber").value=""
+              
+            }
           }
           
-          document.getElementById("bookName").value="",
-          document.getElementById("bookingName").value="",
-          document.getElementById("telNumber").value=""
           
       
       }
+
       
     return(
         <div>
@@ -116,11 +143,11 @@ export function BookView({coverImage,id,author,pages,read,summary,name}){
         <button className="closeModal" onClick={handleCloseModalCadastrar}><XSquare size={32} color="red"weight="fill"/></button>  
         </div>
         <label htmlFor="bookName" >Nome do livro</label>
-        <input id="bookName"type="text" placeholder="Nome do Livro" defaultValue={name}/>
+        <input id="bookName"type="text" placeholder="Nome do Livro" defaultValue={name} required/>
         <label htmlFor="bookingName">Nome do solicitante</label>
-        <input  id="bookingName" type="text" placeholder="Seu nome" />
+        <input  id="bookingName" type="text" placeholder="Seu nome" required/>
         <label htmlFor="telNumber">Numero</label>
-        <input id="telNumber"type="number" name=""  placeholder="9299999999" />
+        <input id="telNumber"type="number" name=""  placeholder="9299999999" required minLength={9}/>
         
         <div className="ModalClose">
         
@@ -141,6 +168,7 @@ export function BookView({coverImage,id,author,pages,read,summary,name}){
             </div>
             
         </div>
+        <ToastContainer />
         </div>
         
         

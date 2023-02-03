@@ -1,8 +1,10 @@
-import "../App.css"
+
 
 import {Api} from "../API/api"
 import {Book} from "../components/Book"
 import Logo from "../assets/log.png"
+import { ToastContainer, toast } from 'react-toastify';
+
 
 
 import Modal from "react-modal"
@@ -11,13 +13,13 @@ import { Books, XSquare,FloppyDisk} from "phosphor-react";
 import { Booking } from "../components/Booking"
 
 
+import "../App.css"
+import 'react-toastify/dist/ReactToastify.min.css';
 
 export function Admin(){
     const [bookList,setBooksList]=useState()
     const [bookingList,setBookingsList]=useState()
-  
- 
-  const [modalIsOpen,setIsOpen]=useState(false)
+    const [modalIsOpen,setIsOpen]=useState(false)
   
   
 
@@ -28,7 +30,6 @@ export function Admin(){
   function handleCloseModal(){
     setIsOpen(false)
   }
-  
 
   const customStyles = {
     content: {
@@ -44,7 +45,6 @@ export function Admin(){
   };
   async function showBooks(){
     const response = await Api.books.readAll()
-
     const resultado = await response.json()
 
   setBooksList(resultado)
@@ -52,7 +52,6 @@ export function Admin(){
  }
  async function showBookings(){
   const response = await Api.bookings.readAll()
-
   const resultado = await response.json()
 
 setBookingsList(resultado)
@@ -74,32 +73,81 @@ setBookingsList(resultado)
   async function createBook(event){
     event.preventDefault()
     
-    const payload = {
-      name:document.getElementById("bookName").value,
-      author:document.getElementById("bookAuthor").value,
-      pages:document.getElementById("bookPages").value,
-      coverImage:document.getElementById("bookCover").value,
-      read:document.getElementById("bookRead").value,
-      summary:document.getElementById("bookSummary").value,
-    }
-
-    const request = await Api.books.createUrl(payload)
-    const data = await request.json()
-
-    if(request.status==200){
-      alert(data.message)
+    if(document.getElementById("bookName").value==""||document.getElementById("bookName").value==undefined){
+      
+      toast.error('Favor preencher o nome do livro!', {
+        position: toast.POSITION.TOP_CENTER
+    });
     }else{
-      alert(data.message)
+      if(document.getElementById("bookAuthor").value==""||document.getElementById("bookAuthor").value==undefined){
+        
+        toast.error('Favor preencher o nome do autor!', {
+          position: toast.POSITION.TOP_CENTER
+      });
+      }else{
+        if(document.getElementById("bookPages").value==""||document.getElementById("bookPages").value==undefined){
+          
+          toast.error('Favor preencher o número de paginas!', {
+            position: toast.POSITION.TOP_CENTER
+        });
+        }else{
+          if(document.getElementById("bookCover").value==""||document.getElementById("bookCover").value==undefined){
+            
+            toast.error('Favor preencher o endereço da capa!', {
+              position: toast.POSITION.TOP_CENTER
+          });
+          }else{
+            if(document.getElementById("bookCover").value.includes("jpg"||"png"||"gif")==false){
+              
+              toast.error('Favor preencher com um endereço de imagem!', {
+                position: toast.POSITION.TOP_CENTER
+            });
+            }else{
+              if(document.getElementById("bookSummary").value==""||document.getElementById("bookSummary").value==undefined){
+                
+                toast.error('Favor preencher o resumo do livro!', {
+                  position: toast.POSITION.TOP_CENTER
+              });
+              }else{
+                const payload = {
+                  name:document.getElementById("bookName").value,
+                  author:document.getElementById("bookAuthor").value,
+                  pages:document.getElementById("bookPages").value,
+                  coverImage:document.getElementById("bookCover").value,
+                  read:document.getElementById("bookRead").value,
+                  summary:document.getElementById("bookSummary").value,
+                }
+            
+                const request = await Api.books.createUrl(payload)
+                const data = await request.json()
+            
+                if(request.status==200){
+                  
+                  toast.success(data.message, {
+                    position: toast.POSITION.TOP_RIGHT
+                });
+                }else{
+                  
+                  toast.error(data.message, {
+                    position: toast.POSITION.TOP_CENTER
+                })
+                }
+            
+                showBooks()
+            
+                  document.getElementById("bookName").value="",
+                  document.getElementById("bookAuthor").value="",
+                  document.getElementById("bookPages").value="",
+                  document.getElementById("bookCover").value="",
+                  document.getElementById("bookRead").value="",
+                  document.getElementById("bookSummary").value=""
+              }
+            }
+          }
+        }
+      }
     }
 
-    showBooks()
-
-      document.getElementById("bookName").value="",
-      document.getElementById("bookAuthor").value="",
-      document.getElementById("bookPages").value="",
-      document.getElementById("bookCover").value="",
-      document.getElementById("bookRead").value="",
-      document.getElementById("bookSummary").value=""
 
   }
   
@@ -145,6 +193,8 @@ setBookingsList(resultado)
       
       <div className="content">
       
+      <div >
+      <h2 className="titleTag">Acervo</h2>
       <div className="listbooks">
       {bookList.map((book)=>(
             
@@ -162,9 +212,12 @@ setBookingsList(resultado)
             />
           ))}
       </div>
+      
+      </div>
           
         <div className="bookings">
-        <h3>Reservas</h3>
+          
+        <h2 className="titleTag">Reservas</h2>
         {bookingList.map((booking)=>(
             
             <Booking 
@@ -187,6 +240,7 @@ setBookingsList(resultado)
        
         
       </div>
+      <ToastContainer />
     </div>
   )
 }

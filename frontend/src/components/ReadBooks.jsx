@@ -8,19 +8,12 @@ export function ReadBooks(){
     
     async function showBooks(){
             const response = await Api.books.readAll()
-        
             const resultado = await response.json()
-        
           setBooksList(resultado)
-          
          }
-        
           useEffect(function () {
             showBooks();
           }, []);
-        
-          console.log(bookList)
-          
           if (bookList === undefined) {
             return (
                 <div>

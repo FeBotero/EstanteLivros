@@ -14,7 +14,9 @@
 [X] Exibir reservas no admin
 [x] Criar estilização condicional para reservas
 [x] Criar botão de mudança no status da reserva (Pendente,Emprestimo,Atendida)
-[ ] Quando mudar de status, deve setar uma data para aquele status, para que seja calculado o atraso de entrega.
+[x] Quando mudar de status, deve setar uma data para aquele status,
+[x] Criar validação dos formularios.
+[ ] Calcular atraso de entrega.
 [ ] Criar aba de Adicionado Recente
 
 aparecer somente a capa, quando colocar o mouse em cima aparecer com nome
