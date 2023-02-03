@@ -11,7 +11,9 @@
 [x] Criar função de atualizar livros
 [X] Criar função de reservar livro
 [x] Criar nova coleção no banco de dados para reserva
-[ ] Exibir reservas no admin
+[X] Exibir reservas no admin
+[ ] Criar estilização condicional para reservas
+[ ] Criar botão de mudança no status da reserva (Pendente,Emprestimo,Atendida)
 [ ] Criar aba de Adicionado Recente
 
 aparecer somente a capa, quando colocar o mouse em cima aparecer com nome

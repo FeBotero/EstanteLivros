@@ -171,6 +171,7 @@ console.log(resultado)
             title={booking.name}
             number={booking.telNumber}
             date={booking.bookingDate}
+            status={booking.bookingStatus}
             refreshbookings={showBookings}
             
             />

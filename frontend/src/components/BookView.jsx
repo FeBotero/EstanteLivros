@@ -50,7 +50,8 @@ export function BookView({coverImage,id,author,pages,read,summary,name}){
             name:document.getElementById("bookName").value,
             bookingName:document.getElementById("bookingName").value,
             telNumber:document.getElementById("telNumber").value,
-            bookingDate:dateNow
+            bookingDate:dateNow,
+            bookingStatus:"pending"
             
           }
           

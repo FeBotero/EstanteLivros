@@ -4,10 +4,13 @@
     background: rgb(236, 221, 193);
     padding: 1rem;
     border-radius: 0.5rem;
+    margin-top: 0.5rem;
+    width: 18rem;
+    justify-content: space-between;
 }
 .ModalClose{
     display: flex;
-    justify-content: end;
+    
     gap:1rem;
 
     
