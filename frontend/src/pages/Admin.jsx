@@ -126,7 +126,7 @@ console.log(resultado)
         <input  id="bookAuthor"type="text" placeholder="Nome do Autor" />
         <label htmlFor="bookPages">Número de paginas</label>
         <input id="bookPages"type="number" name=""  placeholder="Paginas"/>
-        <label htmlFor="bookRead">Já foi lido?</label>
+        <label htmlFor="bookRead">Disponível?</label>
         <select name="bookRead" id="bookRead">
           <option value="true">Sim</option>
           <option value="false">Não</option>
@@ -145,8 +145,8 @@ console.log(resultado)
       
       <div className="content">
       
-      
-          {bookList.map((book)=>(
+      <div className="listbooks">
+      {bookList.map((book)=>(
             
             <Book 
             coverImage={book.coverImage} 
@@ -161,6 +161,8 @@ console.log(resultado)
             
             />
           ))}
+      </div>
+          
         <div className="bookings">
         <h3>Reservas</h3>
         {bookingList.map((booking)=>(

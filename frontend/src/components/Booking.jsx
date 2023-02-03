@@ -31,7 +31,7 @@ export function Booking({name,title,number,date,status,refreshbookings}){
             <p>{name} - {number}</p>
             </div>
             <div className="ModalClose">
-            { status=="pending"? 
+            { status=="pending" ? 
             <button><CaretCircleUp size={32} color="red"weight="fill" value="Emprestar"/></button> :
             <button><CaretCircleDown size={32} color="green"weight="fill"value="Receber"/></button> 
         }

@@ -72,7 +72,7 @@ export function Home(){
       
       <div className="content">
       
-      
+      <div className="listbooks">
           {bookList.map((book)=>(
             
             <BookView 
@@ -88,7 +88,7 @@ export function Home(){
             
             />
           ))}
-        
+        </div>
       </div>
        
         

@@ -2,15 +2,23 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap:1rem
+    
+    gap:2rem
 }
 .content{
     display: flex;
-    flex-wrap: wrap;
-
+    width: 95vw;
+    justify-content: space-between;
     
+    
+     
 }
+.listbooks{
+    display: flex;
+    
+    flex-wrap:wrap ;
+}
+
 .content button{
     border: none;
     background: transparent;
