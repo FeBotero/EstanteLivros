@@ -48,7 +48,7 @@ export function Admin(){
     const resultado = await response.json()
 
   setBooksList(resultado)
-  console.log(resultado)
+
  }
  async function showBookings(){
   const response = await Api.bookings.readAll()
@@ -56,7 +56,7 @@ export function Admin(){
   const resultado = await response.json()
 
 setBookingsList(resultado)
-console.log(resultado)
+
 }
 
   useEffect(function () {
@@ -169,6 +169,7 @@ console.log(resultado)
             
             <Booking 
             name={booking.bookingName} 
+            id={booking._id}
             key={booking._id}
             title={booking.name}
             number={booking.telNumber}

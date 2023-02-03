@@ -12,8 +12,9 @@
 [X] Criar função de reservar livro
 [x] Criar nova coleção no banco de dados para reserva
 [X] Exibir reservas no admin
-[ ] Criar estilização condicional para reservas
-[ ] Criar botão de mudança no status da reserva (Pendente,Emprestimo,Atendida)
+[x] Criar estilização condicional para reservas
+[x] Criar botão de mudança no status da reserva (Pendente,Emprestimo,Atendida)
+[ ] Quando mudar de status, deve setar uma data para aquele status, para que seja calculado o atraso de entrega.
 [ ] Criar aba de Adicionado Recente
 
 aparecer somente a capa, quando colocar o mouse em cima aparecer com nome
