@@ -154,6 +154,7 @@ export function BookView({coverImage,id,author,pages,read,summary,name}){
         <button onClick={booking}>Enviar reserva <PaperPlaneTilt size={32} /></button>
         </div>
         </div>
+
        
       </Modal>
 

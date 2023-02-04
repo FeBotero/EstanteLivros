@@ -1,6 +1,6 @@
 import "./books.css"
 import Modal from "react-modal"
-import { useState,useEffect } from "react"
+import { useState } from "react"
 import {  XSquare,Trash,Pencil,FloppyDisk,CheckCircle,XCircle} from "phosphor-react";
 import { Api } from "../API/api";
 

@@ -18,6 +18,3 @@
 [x] Criar validação dos formularios.
 [ ] Calcular atraso de entrega.
 [ ] Criar aba de Adicionado Recente
-
-aparecer somente a capa, quando colocar o mouse em cima aparecer com nome
-Criar logo igual netflix

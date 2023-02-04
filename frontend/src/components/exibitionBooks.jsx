@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import {Api} from "../API/api"
-import {Book} from "./Book"
+
 
 export function ReadBooks(){
     const [bookList,setBooksList]=useState()
-    const [bookCase,setBookCase]=useState()
+    
     
     async function showBooks(){
             const response = await Api.books.readAll()

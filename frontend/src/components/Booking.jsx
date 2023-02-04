@@ -2,7 +2,7 @@ import "./booking.css"
 import * as dayjs from "dayjs";
 import "dayjs/locale/pt-br";
 import { CaretCircleUp,CaretCircleDown} from "phosphor-react";
-import { useState } from "react";
+
 import { Api } from "../API/api";
 export function Booking({id,name,title,number,date,status,refreshbookings}){
     async function handleStatus(){

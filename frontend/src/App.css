@@ -12,7 +12,10 @@
 }
 .listbooks{
     display: flex;
+    padding: 2.5rem 1.5rem;
     flex-wrap:wrap ;
+    overflow-y:scroll;
+    height: 35.5rem 
 }
 .titleTag{
     display: flex;
@@ -71,4 +74,41 @@
     padding: .5rem;
     border: none;
     border-radius: 0.5rem;
+}
+.bookings{
+    overflow-y:scroll;
+    padding: 2.5rem 1.5rem;
+    height: 35rem 
+}
+button{
+    border: 0;
+}
+
+.buttonAdd{
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    background:rgb(143, 143, 123);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    transform: scale(1);
+    color: white;
+    font-size: larger;
+    transition: all 0.5s;
+}
+.buttonAdd:hover{
+    transform: scale(1.1);
+    transition: all 0.5s;
+}
+
+
+/* ======Estilização dos Scroll======= */
+::-webkit-scrollbar-track {
+    display: none;
+}
+::-webkit-scrollbar {
+    display: none;
+}
+::-webkit-scrollbar-thumb {
+    display: none;
 }

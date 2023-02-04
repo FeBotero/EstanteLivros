@@ -156,7 +156,9 @@ setBookingsList(resultado)
     <div className="App">
       <div className="container">
       <img className="logoImage"src={Logo} alt="" />
-        <button onClick={handleOpenModal}>Adicionar Livro <Books size={32} /> </button>
+        <button className="buttonAdd" onClick={handleOpenModal}>Adicionar Livro <Books size={32} /> </button>
+        <a href="/report">Relatório</a>
+
 
         {/* Modal de novos livros */}
         <Modal
@@ -215,9 +217,10 @@ setBookingsList(resultado)
       
       </div>
           
-        <div className="bookings">
+        <div >
           
         <h2 className="titleTag">Reservas</h2>
+        <div className="bookings">
         {bookingList.map((booking)=>(
             
             <Booking 
@@ -232,7 +235,7 @@ setBookingsList(resultado)
             
             />
           ))}
-
+</div>
 
       </div>
       </div>
