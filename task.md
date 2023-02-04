@@ -16,5 +16,6 @@
 [x] Criar botão de mudança no status da reserva (Pendente,Emprestimo,Atendida)
 [x] Quando mudar de status, deve setar uma data para aquele status,
 [x] Criar validação dos formularios.
-[ ] Calcular atraso de entrega.
+[x] Calcular atraso de entrega.
+[x] Relatório de uso
 [ ] Criar aba de Adicionado Recente

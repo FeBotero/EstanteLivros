@@ -3,6 +3,9 @@ import Modal from "react-modal"
 import { useState } from "react"
 import {  XSquare,Trash,Pencil,FloppyDisk,CheckCircle,XCircle} from "phosphor-react";
 import { Api } from "../API/api";
+import { ToastContainer, toast } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.min.css';
 
 export function Book({coverImage,id,refreshBooks,author,pages,read,summary,name}){
   
@@ -27,10 +30,17 @@ export function Book({coverImage,id,refreshBooks,author,pages,read,summary,name}
       async function deleteBook(){
         const response = await Api.books.deleteUrl(id)
         const data = await response.json()
-        if(request.status==200){
-          alert(data.message)
+
+        if(response.status==200){
+          
+          toast.success(data.message, {
+            position: toast.POSITION.TOP_RIGHT
+        });
             }else{
-          alert(data.message)
+          
+          toast.error(data.message, {
+            position: toast.POSITION.TOP_CENTER
+        });
         }
         refreshBooks()
       }
@@ -71,11 +81,17 @@ export function Book({coverImage,id,refreshBooks,author,pages,read,summary,name}
     const data = await request.json()
     console.log(data)
 
-      if(request.status==200){
-        alert(data.message)
-      }else{
-      alert(data.message)
-        }
+    if(request.status==200){
+                  
+      toast.success(data.message, {
+        position: toast.POSITION.TOP_RIGHT
+    });
+    }else{
+      
+      toast.error(data.message, {
+        position: toast.POSITION.TOP_CENTER
+    })
+    }
         handleCloseModalCadastrar()
         refreshBooks()
 

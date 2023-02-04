@@ -4,12 +4,13 @@ import {Api} from "../API/api"
 import {Book} from "../components/Book"
 import Logo from "../assets/log.png"
 import { ToastContainer, toast } from 'react-toastify';
-
-
+import duration from "dayjs/plugin/duration"
+import * as dayjs from "dayjs";
+import "dayjs/locale/pt-br";
 
 import Modal from "react-modal"
 import { useState,useEffect } from "react"
-import { Books, XSquare,FloppyDisk} from "phosphor-react";
+import { Books, XSquare,FloppyDisk, FileText,Warning} from "phosphor-react";
 import { Booking } from "../components/Booking"
 
 
@@ -17,11 +18,18 @@ import "../App.css"
 import 'react-toastify/dist/ReactToastify.min.css';
 
 export function Admin(){
+  
     const [bookList,setBooksList]=useState()
     const [bookingList,setBookingsList]=useState()
     const [modalIsOpen,setIsOpen]=useState(false)
+    const [modalIsOpenTransaction,setIsOpenTransaction]=useState(false)
+    const [transactions,setTransactions]= useState()
+    
+    dayjs.extend(duration)
   
-  
+    
+    const now = Date.now();
+    const dateNow = Date(now);
 
   function handleOpenModal(){
     setIsOpen(true)
@@ -30,6 +38,34 @@ export function Admin(){
   function handleCloseModal(){
     setIsOpen(false)
   }
+
+  function handleOpenModalTransaction(){
+    showTransation()
+    setIsOpenTransaction(true)
+  }
+
+  function handleCloseModalTransaction(){
+    setIsOpenTransaction(false)
+  }
+
+  async function showTransation(){
+    const response = await Api.bookings.readAll()
+    const resultado = await response.json()
+
+    setTransactions(resultado)
+    if (transactions === undefined) {
+      return (
+          <div>
+          <h1>Carregando2</h1>
+          </div>
+);
+
+}
+    
+
+      
+}
+
 
   const customStyles = {
     content: {
@@ -61,11 +97,13 @@ setBookingsList(resultado)
   useEffect(function () {
     showBooks();
     showBookings()
+    showTransation()
+    
   }, []);
   if (bookingList === undefined||bookList === undefined) {
     return (
         <div>
-        <h1>Carregando</h1>
+        <h1>Carregando 1</h1>
         </div>
   )
 }
@@ -156,8 +194,11 @@ setBookingsList(resultado)
     <div className="App">
       <div className="container">
       <img className="logoImage"src={Logo} alt="" />
-        <button className="buttonAdd" onClick={handleOpenModal}>Adicionar Livro <Books size={32} /> </button>
-        <a href="/report">Relatório</a>
+      <div className="menu">
+      <button className="buttonAdd" onClick={handleOpenModal}>Adicionar <Books size={32} /> </button>
+        <button className="buttonReport" onClick={handleOpenModalTransaction}>Relatório <FileText size={32} /> </button>
+      </div>
+        
 
 
         {/* Modal de novos livros */}
@@ -193,6 +234,78 @@ setBookingsList(resultado)
         </Modal>
 
       
+        {/* Modal de relatórios */}
+        <Modal
+        isOpen={modalIsOpenTransaction}
+        onRequestClose={handleCloseModalTransaction}
+        style={customStyles}
+        >
+          <div className="ModalClose">
+        <button className="closeModal" onClick={handleCloseModalTransaction}><XSquare size={32} color="red"weight="fill"/></button>  
+        </div>
+          <div className="contentReport">
+          
+            <h1>RELATÓRIO DE USO</h1>
+            
+            <table>
+                <thead>
+                    <tr>
+                    <th>Livro</th>
+                    <th>Solicitante</th>
+                    <th>Contato</th>
+                    <th>Solicitação</th>
+                    <th>Saída</th>
+                    <th>Devolução</th>
+                    <th>Tempo</th>
+                    <th>Atraso</th>
+                    </tr>
+                    
+                </thead>
+                <tbody>
+                
+                {
+                    transactions==""||transactions==undefined?"":
+                    transactions.map(itemTransaction=>{
+                        
+                      const today = dayjs(dateNow)
+                      
+                      const LoanDate = dayjs(itemTransaction.loanDate)
+                      
+                      const CompletedDate = dayjs(itemTransaction.completedDate)
+
+                      const duration = dayjs.duration(CompletedDate.diff(LoanDate)).days()
+                      
+
+                      const durationDelay = dayjs.duration(today.diff(LoanDate)).days()
+                     
+
+
+                      return(
+                      <tr key={itemTransaction._id}>
+                          <td>{itemTransaction.name}</td>
+                          <td>{itemTransaction.bookingName}</td>
+                          <td>{itemTransaction.telNumber}</td>
+                          <td>{dayjs(itemTransaction.bookingDate).format("DD/MM/YYYY")}</td>
+                          
+                          <td>{itemTransaction.loanDate==""||itemTransaction.loanDate==undefined ||itemTransaction.loanDate==0? "": dayjs(itemTransaction.loanDate).format("DD/MM/YYYY")}</td>
+                          <td>{itemTransaction.devolutionDate==""||itemTransaction.devolutionDate==undefined ||itemTransaction.devolutionDate==0? "": dayjs(itemTransaction.devolutionDate).format("DD/MM/YYYY")}</td>
+                          <td>{itemTransaction.devolutionDate==""||itemTransaction.devolutionDate==undefined ||itemTransaction.devolutionDate==0? "": duration}</td>
+                          <td>{itemTransaction.devolutionDate==""||itemTransaction.devolutionDate==undefined ||itemTransaction.devolutionDate==0
+                          ? itemTransaction.loanDate==""||itemTransaction.loanDate==undefined ||itemTransaction.loanDate==0? "": durationDelay>=7? <p className="delay">{durationDelay} (d) <Warning size={32} color="red"weight="fill"/></p>:"":""
+                              
+                      }</td>
+
+                      </tr>)
+                  })
+                }
+                </tbody>
+            </table>
+
+            </div>
+        
+        </Modal>
+
+
       <div className="content">
       
       <div >

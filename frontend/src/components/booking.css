@@ -1,6 +1,6 @@
 .loan,
 .pending,
-.completed{
+.devolution{
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -19,7 +19,7 @@
     background: rgb(233, 183, 160);
     
 }
-.completed{
+.devolution{
     background: rgb(160, 233, 184);
     display: none;
     

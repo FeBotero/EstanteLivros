@@ -33,8 +33,8 @@ export function Booking({id,name,title,number,date,status,refreshbookings}){
                 
 
             const payload = {
-                bookingStatus:"completed",
-                completedDate:dateNow
+                bookingStatus:"devolution",
+                devolutionDate:dateNow
             }
 
             const request = await Api.bookings.updateUrl(id,payload)
