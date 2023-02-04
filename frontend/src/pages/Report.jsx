@@ -2,8 +2,11 @@ import { useEffect, useState } from "react";
 import { Api } from "../API/api";
 import * as dayjs from "dayjs";
 import "dayjs/locale/pt-br";
+import duration from "dayjs/plugin/duration"
 
 export function Report(){
+    dayjs.extend(duration)
+
 const [transactions,setTransactions]= useState()
 
     async function showTransation(){
@@ -25,6 +28,7 @@ const [transactions,setTransactions]= useState()
                 </div>
       );
     }
+    
 
     return(
         <div>
@@ -48,7 +52,7 @@ const [transactions,setTransactions]= useState()
                     transactions.map(itemTransaction=>{
                         const x = dayjs(itemTransaction.loanDate)
                         const y = dayjs(itemTransaction.completedDate)
-                        var duration = y.diff(x)
+                        var duration = dayjs.duration(y.diff(x)).days()
                         console.log(duration)
 
                         return(
@@ -59,7 +63,7 @@ const [transactions,setTransactions]= useState()
                             <td>{dayjs(itemTransaction.bookingDate).format("DD/MM/YYYY")}</td>
                             <td>{dayjs(itemTransaction.loanDate).format("DD/MM/YYYY")}</td>
                             <td>{dayjs(itemTransaction.completedDate).format("DD/MM/YYYY")}</td>
-                            <td>{"oi"}</td>
+                            <td>{duration}</td>
 
                         </tr>)
                     })
