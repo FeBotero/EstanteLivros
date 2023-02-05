@@ -4,9 +4,9 @@ import Logo from "../assets/log.png"
 import {Api} from "../API/api"
 import { BookView } from "../components/BookView"
 
+import { Link } from "react-router-dom";
 
-
-import { useState,useEffect } from "react"
+import { useState,useEffect,Lin } from "react"
 
 
 
@@ -14,32 +14,6 @@ import { useState,useEffect } from "react"
 export function Home(){
     const [bookList,setBooksList]=useState()
   
- 
-  const [modalIsOpen,setIsOpen]=useState(false)
-  
-  
-
-  function handleOpenModal(){
-    setIsOpen(true)
-  }
-
-  function handleCloseModal(){
-    setIsOpen(false)
-  }
-  
-
-  const customStyles = {
-    content: {
-      top: '50%',
-      minWidth:"30rem",
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      borderRadius:"8px",
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-    },
-  };
   async function showBooks(){
     const response = await Api.books.readAll()
 
@@ -68,6 +42,7 @@ export function Home(){
     <div className="App">
       <div className="container">
         <img className="logoImage"src={Logo} alt="" />
+        <a Link="/edit"></a><button> ADM</button>
       
       
       <div className="content">
