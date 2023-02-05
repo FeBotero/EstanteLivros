@@ -2,6 +2,8 @@ import "./booking.css"
 import * as dayjs from "dayjs";
 import "dayjs/locale/pt-br";
 import { CaretCircleUp,CaretCircleDown} from "phosphor-react";
+import 'react-toastify/dist/ReactToastify.min.css';
+import { ToastContainer, toast } from 'react-toastify';
 
 import { Api } from "../API/api";
 export function Booking({id,name,title,number,date,status,refreshbookings}){
@@ -19,10 +21,16 @@ export function Booking({id,name,title,number,date,status,refreshbookings}){
             const data = await request.json()
 
             if(request.status==200){
-                alert(data.message)
+                
+                toast.success(data.message, {
+                  position: toast.POSITION.TOP_RIGHT
+              });
               }else{
-              alert(data.message)
-                }
+                
+                toast.error(data.message, {
+                  position: toast.POSITION.TOP_CENTER
+              })
+              }
 
             refreshbookings()
             
@@ -41,10 +49,16 @@ export function Booking({id,name,title,number,date,status,refreshbookings}){
             const data = await request.json()
 
             if(request.status==200){
-                alert(data.message)
+                
+                toast.success(data.message, {
+                  position: toast.POSITION.TOP_RIGHT
+              });
               }else{
-              alert(data.message)
-                }
+                
+                toast.error(data.message, {
+                  position: toast.POSITION.TOP_CENTER
+              })
+              }
 
             refreshbookings()
                 
@@ -73,7 +87,7 @@ export function Booking({id,name,title,number,date,status,refreshbookings}){
             
             </div>
             
-            
+            <ToastContainer/>
         </div>
     )
 }

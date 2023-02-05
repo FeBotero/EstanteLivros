@@ -34,22 +34,13 @@ export function Home(){
         </div>
 );
 }
-
-  
-  
-
   return (
     <div className="App">
       <div className="container">
-        <img className="logoImage"src={Logo} alt="" />
-        <Link to="/edit"><button> ADM</button></Link>
-      
-      
+        <img className="logoImage"src={Logo} alt="" />   
       <div className="content">
-      
       <div className="listbooks">
           {bookList.map((book)=>(
-            
             <BookView 
             coverImage={book.coverImage} 
             id={book._id}
@@ -60,13 +51,10 @@ export function Home(){
             read={book.read}
             summary={book.summary}
             refreshBooks={showBooks}
-            
             />
           ))}
         </div>
       </div>
-       
-        
       </div>
     </div>
   )
