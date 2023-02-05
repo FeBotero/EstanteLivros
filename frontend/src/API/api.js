@@ -30,7 +30,7 @@ const putRequest = function (url, body) {
 };
 
 export const Api = {
-  baseUrl: "http://localhost:3000/",
+  baseUrl: "https://bookstore-backend-zwd6.onrender.com/",
 
   books: {
     endpoint: function () {
