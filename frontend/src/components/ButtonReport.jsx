@@ -96,8 +96,8 @@ export function ButtonReport(){
                           <td>{itemTransaction.telNumber}</td>
                           <td>{dateExibition}</td>
                           <td>{itemTransaction.loanDate==""||itemTransaction.loanDate==undefined ||itemTransaction.loanDate==0? "": dayjs(itemTransaction.loanDate).format("DD/MM/YYYY")}</td>
-                          <td>{itemTransaction.devolutionDate==""||itemTransaction.devolutionDate==undefined ||itemTransaction.devolutionDate==0? "": dayjs(itemTransaction.devolutionDate).format("DD/MM/YYYY")}</td>
-                          <td>{itemTransaction.devolutionDate==""||itemTransaction.devolutionDate==undefined ||itemTransaction.devolutionDate==0? "": duration}</td>
+                          <td>{itemTransaction.devolutionDate==""||itemTransaction.devolutionDate==undefined ||itemTransaction.devolutionDate==0?"": dayjs(itemTransaction.devolutionDate).format("DD/MM/YYYY")}</td>
+                          <td>{itemTransaction.devolutionDate==""||itemTransaction.devolutionDate==undefined ||itemTransaction.devolutionDate==0?"": duration}</td>
                           <td>{itemTransaction.devolutionDate==""||itemTransaction.devolutionDate==undefined ||itemTransaction.devolutionDate==0? itemTransaction.loanDate==""||itemTransaction.loanDate==undefined ||itemTransaction.loanDate==0? "": durationDelay>=7? <p className="delay">{durationDelay} (d) <Warning size={32} color="red"weight="fill"/></p>:"":""}</td>
 
                       </tr>)
