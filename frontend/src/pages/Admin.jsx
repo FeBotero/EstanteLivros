@@ -14,6 +14,8 @@ import { Books, XSquare,FloppyDisk, FileText,Warning} from "phosphor-react";
 import { Booking } from "../components/Booking"
 
 
+
+
 import "../App.css"
 import 'react-toastify/dist/ReactToastify.min.css';
 
@@ -56,14 +58,9 @@ export function Admin(){
     if (transactions === undefined) {
       return (
           <div>
-          <h1>Carregando2</h1>
+          <h1>Carregando</h1>
           </div>
-);
-
-}
-    
-
-      
+)}  
 }
 
 
@@ -103,7 +100,7 @@ setBookingsList(resultado)
   if (bookingList === undefined||bookList === undefined) {
     return (
         <div>
-        <h1>Carregando 1</h1>
+        <h1>Carregando</h1>
         </div>
   )
 }
@@ -189,7 +186,7 @@ setBookingsList(resultado)
 
   }
   
-
+  
   return (
     <div className="App">
       <div className="container">

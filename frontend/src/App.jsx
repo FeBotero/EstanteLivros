@@ -18,7 +18,7 @@ export function App() {
   return (
     <div className="App">
       <Routes>
-        <Route index element={<Admin/>}/>
+        <Route index element={<Home/>}/>
         <Route path="/edit" element={<Admin/>}/>
         
       </Routes>
