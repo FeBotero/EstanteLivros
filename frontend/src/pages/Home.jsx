@@ -6,7 +6,7 @@ import { BookView } from "../components/BookView"
 
 import { Link } from "react-router-dom";
 
-import { useState,useEffect,Lin } from "react"
+import { useState,useEffect, } from "react"
 
 
 
@@ -42,7 +42,7 @@ export function Home(){
     <div className="App">
       <div className="container">
         <img className="logoImage"src={Logo} alt="" />
-        <a Link="/edit"></a><button> ADM</button>
+        <Link to="/edit"><button> ADM</button></Link>
       
       
       <div className="content">
