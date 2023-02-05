@@ -20,7 +20,7 @@ export function Home(){
     const resultado = await response.json()
 
   setBooksList(resultado)
-  console.log(resultado)
+
  }
 
   useEffect(function () {
