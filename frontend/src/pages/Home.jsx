@@ -1,5 +1,6 @@
 import "../App.css"
 import Logo from "../assets/log.png"
+import Loading from "../assets/loading.gif"
 
 import {Api} from "../API/api"
 import { BookView } from "../components/BookView"
@@ -29,15 +30,25 @@ export function Home(){
   
   if (bookList === undefined) {
     return (
-        <div>
-        <h1>Carregando</h1>
+      <div className="loading">
+          <img src={Loading} alt="" />
+        <h1>Aguarde, estamos carregando as informações.</h1>
         </div>
 );
 }
   return (
     <div className="App">
       <div className="container">
-        <Link to="/edit"><img className="logoImage"src={Logo} alt="" />   </Link>
+        <nav >
+        <p></p>
+        <img className="logoImage"src={Logo} alt="" />  
+        <div>
+        
+       <Link to="/edit"><button className="buttonAdm">Administrador</button></Link>
+        </div>
+        
+        </nav>
+      
       <div className="content">
       <div className="listbooks">
           {bookList.map((book)=>(

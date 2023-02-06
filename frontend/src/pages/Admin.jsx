@@ -9,6 +9,7 @@ import { useState,useEffect } from "react"
 import { Booking } from "../components/Booking"
 import "../App.css"
 import 'react-toastify/dist/ReactToastify.min.css';
+import Loading from "../assets/loading.gif"
 
 import { ButtonCreate } from "../components/ButtonCreate";
 import { ButtonReport } from "../components/ButtonReport";
@@ -37,8 +38,9 @@ setBookingsList(resultado)
   }, []);
   if (bookingList === undefined||bookList === undefined) {
     return (
-        <div>
-        <h1>Carregando</h1>
+      <div className="loading">
+          <img src={Loading} alt="" />
+        <h1>Aguarde, estamos carregando as informações.</h1>
         </div>
   )
 }
