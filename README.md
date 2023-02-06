@@ -30,8 +30,8 @@
 <p>A ideia era listar os livros disponiveis, mas construímos um CRUD completo para os livros e solicitação de reservas ou emprestimos. Assim foi possivel desenvolver utilizando modais para apresentação em tela de fomulários e relatórios.</p>
 
  <h2 id="layout">Layout</h2>
- <p>link</p>
- <p>Foto do projeto</p>
+ <a href="https://estante-livros.vercel.app/"><p>Demo</p></a>
+ 
 <img alt="ADM User" src="https://github.com/FeBotero/EstanteLivros/blob/main/frontend/src/assets/adm.png">
 <img alt="Public User" src="https://github.com/FeBotero/EstanteLivros/blob/main/frontend/src/assets/user.png">
 
