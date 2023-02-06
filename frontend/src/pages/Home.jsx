@@ -37,7 +37,7 @@ export function Home(){
   return (
     <div className="App">
       <div className="container">
-        <img className="logoImage"src={Logo} alt="" />   
+        <Link to="/edit"><img className="logoImage"src={Logo} alt="" />   </Link>
       <div className="content">
       <div className="listbooks">
           {bookList.map((book)=>(
