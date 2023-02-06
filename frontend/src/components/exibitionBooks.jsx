@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import {Api} from "../API/api"
-
+import Loading from "../assets/loading.gif"
 
 export function ReadBooks(){
     const [bookList,setBooksList]=useState()
@@ -23,9 +23,10 @@ export function ReadBooks(){
           
           if (bookList === undefined) {
             return (
-                <div>
-                <h1>Carregando</h1>
-                </div>
+                <div className="loading">
+          <img src={Loading} alt="" />
+        <h1>Aguarde, estamos carregando as informações.</h1>
+        </div>
       );
     }
         return(

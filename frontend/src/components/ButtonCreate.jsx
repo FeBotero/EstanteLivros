@@ -1,9 +1,8 @@
 import {Api} from "../API/api"
 
 import { ToastContainer, toast } from 'react-toastify';
-import duration from "dayjs/plugin/duration"
-import * as dayjs from "dayjs";
-import "dayjs/locale/pt-br";
+
+
 import Modal from "react-modal"
 import { useState } from "react"
 import { Books, XSquare,FloppyDisk} from "phosphor-react";
@@ -15,7 +14,7 @@ export function ButtonCreate({refreshBooks}){
   
     const [modalIsOpen,setIsOpen]=useState(false)
 
-    dayjs.extend(duration)
+
 
   function handleOpenModal(){ 
     setIsOpen(true)

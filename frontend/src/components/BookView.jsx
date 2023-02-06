@@ -48,8 +48,8 @@ export function BookView({coverImage,id,author,pages,read,summary,name}){
       async function booking(event){
         
           event.preventDefault()
-          const now = Date.now();
-          const dateNow = Date(now);
+          const dateNow = new Date();
+        
           if(document.getElementById("bookingName").value==""||document.getElementById("bookName").value==undefined){
             
             toast.error('Favor preencher seu nome !', {

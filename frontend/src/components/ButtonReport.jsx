@@ -1,7 +1,5 @@
 import {Api} from "../API/api"
-import duration from "dayjs/plugin/duration"
-import * as dayjs from "dayjs";
-import "dayjs/locale/pt-br";
+// import duration from "dayjs/plugin/duration"
 import Modal from "react-modal"
 import { useState } from "react"
 import { XSquare, FileText,Warning} from "phosphor-react";
@@ -11,14 +9,13 @@ import 'react-toastify/dist/ReactToastify.min.css';
 
 
 export function ButtonReport(){
-
+  const now = new Date()
+  const todayDate = new Date()
     const [modalIsOpenTransaction,setIsOpenTransaction]=useState(false)
     const [transactions,setTransactions]= useState()
-    
-    dayjs.extend(duration)
 
-    const now = Date.now();
-    const dateNow = Date(now);
+    
+    
 
  
   function handleOpenModalTransaction(){
@@ -82,22 +79,27 @@ export function ButtonReport(){
                 <tbody>                
                 {
                     transactions==""||transactions==undefined?"":
-                    transactions.map(itemTransaction=>{                        
-                      const today = dayjs(dateNow)                      
-                      const LoanDate = dayjs(itemTransaction.loanDate)                      
-                      const CompletedDate = dayjs(itemTransaction.completedDate)
-                      const duration = dayjs.duration(CompletedDate.diff(LoanDate)).days()
-                      const durationDelay = dayjs.duration(today.diff(LoanDate)).days()  
-                      const dateExibition = dayjs(itemTransaction.bookingDate).format("DD/MM/YYYY")                 
+                    transactions.map((itemTransaction)=>{                        
+                      const today = new Intl.DateTimeFormat("pt-BR").format(todayDate)
+                  
+
+                      
+                     
+                      const diffLoanCompleted = new Date((itemTransaction.devolutionDate)) - new Date(itemTransaction.loanDate)
+                      const durationDate =  diffLoanCompleted / (1000 * 60 * 60 * 24);
+                      
+                      const diffLoanToday = new Date((todayDate)) - new Date(itemTransaction.loanDate)
+                      const durationDelay =  Math.round(diffLoanToday / (1000 * 60 * 60 * 24))
+                                      
                       return(
                       <tr key={itemTransaction._id}>
                           <td>{itemTransaction.name}</td>
                           <td>{itemTransaction.bookingName}</td>
                           <td>{itemTransaction.telNumber}</td>
-                          <td>{dateExibition}</td>
-                          <td>{itemTransaction.loanDate==""||itemTransaction.loanDate==undefined ||itemTransaction.loanDate==0? "": dayjs(itemTransaction.loanDate).format("DD/MM/YYYY")}</td>
-                          <td>{itemTransaction.devolutionDate==""||itemTransaction.devolutionDate==undefined ||itemTransaction.devolutionDate==0?"": dayjs(itemTransaction.devolutionDate).format("DD/MM/YYYY")}</td>
-                          <td>{itemTransaction.devolutionDate==""||itemTransaction.devolutionDate==undefined ||itemTransaction.devolutionDate==0?"": duration}</td>
+                          <td>{today}</td>
+                          <td>{itemTransaction.loanDate==""||itemTransaction.loanDate==undefined ||itemTransaction.loanDate==0? "": new Intl.DateTimeFormat("pt-BR").format(Date.parse(itemTransaction.loanDate))}</td>
+                          <td>{itemTransaction.devolutionDate==""||itemTransaction.devolutionDate==undefined ||itemTransaction.devolutionDate==0?"": new Intl.DateTimeFormat("pt-BR").format(Date.parse(itemTransaction.devolutionDate))}</td>
+                          <td>{itemTransaction.devolutionDate==""||itemTransaction.devolutionDate==undefined ||itemTransaction.devolutionDate==0?"": durationDate}</td>
                           <td>{itemTransaction.devolutionDate==""||itemTransaction.devolutionDate==undefined ||itemTransaction.devolutionDate==0? itemTransaction.loanDate==""||itemTransaction.loanDate==undefined ||itemTransaction.loanDate==0? "": durationDelay>=7? <p className="delay">{durationDelay} (d) <Warning size={32} color="red"weight="fill"/></p>:"":""}</td>
 
                       </tr>)

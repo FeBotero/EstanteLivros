@@ -133,9 +133,6 @@ export function Book({coverImage,id,refreshBooks,author,pages,read,summary,name}
        
       </Modal>
 
-
-
-
             <Modal
         isOpen={modalIsOpenExibir}
         onRequestClose={handleCloseModalExibir}

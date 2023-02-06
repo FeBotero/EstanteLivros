@@ -1,20 +1,22 @@
 import "./booking.css"
-import * as dayjs from "dayjs";
-import "dayjs/locale/pt-br";
 import { CaretCircleUp,CaretCircleDown} from "phosphor-react";
 import 'react-toastify/dist/ReactToastify.min.css';
 import { ToastContainer, toast } from 'react-toastify';
 
 import { Api } from "../API/api";
-export function Booking({id,name,title,number,date,status,refreshbookings}){
+export function Booking({id,name,date,title,number,status,refreshbookings}){
+    
+    const today = Date.parse(date)
+document.getElementById
     async function handleStatus(){
-        const now = Date.now();
-        const dateNow = Date(now);
+        // const today = new Date()
+        
+        console.debug(new Intl.DateTimeFormat('pt-BR').format(today));
         if(status=="pending"){
       
             const payload = {
                 bookingStatus:"loan",
-                loanDate:dateNow
+                loanDate:new Date(today)
             }
 
             const request = await Api.bookings.updateUrl(id,payload)
@@ -42,7 +44,7 @@ export function Booking({id,name,title,number,date,status,refreshbookings}){
 
             const payload = {
                 bookingStatus:"devolution",
-                devolutionDate:dateNow
+                devolutionDate:new Date(today)
             }
 
             const request = await Api.bookings.updateUrl(id,payload)
@@ -64,7 +66,10 @@ export function Booking({id,name,title,number,date,status,refreshbookings}){
                 
             }
         }     
+
     }   
+
+    
     return(
         <div className={status}>
             
@@ -72,7 +77,7 @@ export function Booking({id,name,title,number,date,status,refreshbookings}){
             <div>
                 
             <h3>{title}</h3>
-            <p>{dayjs(date).format("DD/MM/YYYY")}</p>
+            <p>{new Intl.DateTimeFormat('pt-BR').format(today)}</p>
             
             <p>{name} - {number}</p>
             </div>
