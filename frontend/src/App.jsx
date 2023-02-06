@@ -18,8 +18,8 @@ export function App() {
   return (
     <div className="App">
       <Routes>
-        <Route index element={<Admin/>}/>
-        <Route path="/edit" element={<Home/>}/>
+        <Route index element={<Home/>}/>
+        <Route path="/edit" element={<Admin/>}/>
         
       </Routes>
     </div>
